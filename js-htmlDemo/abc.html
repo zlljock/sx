@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework-JS弹幕墙</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        .frame {
+            margin-top: 10px;
+            margin-left: 10px;
+            overflow: hidden;
+            position: relative;
+            background: url("./img/IMG.png") no-repeat;
+            background-size:100% 100%;
+        }
+        .sender {
+            height: 50px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        input{
+            outline-style: none ;
+            border: 1px solid #ccc; 
+            border-radius: 3px;
+            padding: 13px 14px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: "Microsoft soft";
+            width: 70%;
+        }
+        input:focus{
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+        }
+        .senderBtn {
+            margin-left: 10px;
+            line-height: 48px;
+            border-radius: 3px;
+            display: inline-block;
+            color: white;
+            height: 48px;
+            width: 12%;
+            text-align: center;
+            font-size: larger;
+            background-color: #00A1D6;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div id="main" class="frame"></div>
+    <div id="send" class="sender">
+        <input maxlength="100" id="inputText" type="text" placeholder="快来发一条弹幕吧~(最大长度100)"/>
+        <div id="Btn1" class="senderBtn">发送弹幕</div>
+        <div id="Btn2" class="senderBtn">清屏</div>
+    </div>
+    <script type="text/javascript">
+        var WIN_WIDTH = 0;
+        var WIN_HEIGHT = 0;
+        var DANMU_LIST = [];
+        var SEQ = 1;
+
+        /**
+         * 弹幕对象
+         */
+         function DanMu(id,speed){
+            return {"id":id,"speed":speed};
+        }
+
+        /**
+         * 生成随机数
+         */
+         function getRandom(start, end, fixed=0) {
+            let differ = end - start;
+            let random = Math.random();
+            return (start + differ * random).toFixed(fixed);
+        }
+
+
+        /**
+         * 创建、删除一个DIV
+         */
+         function addDanmu(text) {
+            // 随机生成颜色、速度（2~7）、大小（20~50px）、位置（0~MAX高度-60）
+            let r = getRandom(0, 255);
+            let g = getRandom(0, 255);
+            let b = getRandom(0, 255);
+            let speed = getRandom(4, 8);
+            let size = getRandom(10, 50);
+            let top = getRandom(0, WIN_HEIGHT - 140);
+            let left = parseInt(getRandom(600, 3000)) + parseInt(WIN_WIDTH);
+            // 创建一个div  
+            var danmu = document.createElement("div");  
+            // 设置样式
+            danmu.style.position = "absolute";
+            danmu.style.left = left + "px";
+            danmu.style.top = top + "px";
+            danmu.style.fontSize = size + "px";
+            danmu.style.color = "rgb(" + r + ", " + g + ", " + b + ")";
+            danmu.style.whiteSpace = "nowrap"
+            // 设置ID
+            danmu.id = "danmu_" + SEQ++; 
+            // 添加到父元素下
+            document.getElementById("main").appendChild(danmu);  
+            // 添加内容
+            document.getElementById(danmu.id).innerText = text;
+            // 添加到弹幕列表
+            var obj = {"id": danmu.id, "speed": speed, "length": -(5000 + WIN_WIDTH)};
+            console.log(obj.length, danmu.fontSize, WIN_WIDTH);
+            
+            DANMU_LIST.push(obj);
+        }
+        function deleteDanmu(id) {
+            var danmu = document.getElementById(id);
+            console.log("delete" + danmu);
+            if (danmu != null) {
+                danmu.parentNode.removeChild(danmu);
+            }
+        }
+
+        /**
+         * 发送弹幕
+         */
+        function sendDanmu() {
+            // 获取内容
+            var text = document.getElementById("inputText").value;
+            document.getElementById("inputText").value = "";
+            for (var i = 0; i < 10; i++) {
+                addDanmu(text);
+            }
+        }
+
+        /**
+         * 滑动
+         */
+        function move(id, speed) {
+            speed = parseInt(speed);
+            var now = parseInt(document.getElementById(id).style.left);
+            document.getElementById(id).style.left = now - speed + "px";
+        }
+
+        /**
+         * 定时器
+         */
+        var int=self.setInterval("start()",10);
+        function start() {
+            for (var i = DANMU_LIST.length - 1; i >= 0; i--) {
+                move(DANMU_LIST[i].id, DANMU_LIST[i].speed);
+                if (parseInt(document.getElementById(DANMU_LIST[i].id).style.left) < DANMU_LIST[i].length) {
+                    deleteDanmu(DANMU_LIST[i].id);
+                    DANMU_LIST.splice(i, 1);
+                }
+            }
+            
+        }
+
+        /**
+         * 清屏
+         */
+        function clearDanmu() {
+            DANMU_LIST = [];
+            document.getElementById("main").innerText = "";
+        }
+
+        /**
+         * 窗口初始化
+         */
+        function initWindows() {
+            WIN_WIDTH = document.documentElement.clientWidth;
+            WIN_HEIGHT = document.documentElement.clientHeight;
+            document.getElementById("main").style.height = (WIN_HEIGHT - 80) + "px";
+            document.getElementById("main").style.width = (WIN_WIDTH - 20) + "px";
+            document.getElementById("send").style.width = (WIN_WIDTH - 20) + "px";
+        }
+        window.onload = function() {
+            initWindows();
+            document.getElementById("Btn1").addEventListener("click", sendDanmu);
+            document.getElementById("Btn2").addEventListener("click", clearDanmu);
+            for (var i = 0; i < 25; i++) {
+                addDanmu("下次一定");
+            }
+            for (var i = 0; i < 15; i++) {
+                addDanmu("白嫖成功");
+            }
+            for (var i = 0; i < 5; i++) {
+                addDanmu("你币有了");
+            }
+            for (var i = 0; i < 5; i++) {
+                addDanmu("果断三连");
+            }
+        }
+        window.onresize = function() {
+            initWindows();
+        } 
+    </script>
+</body>
+</html>

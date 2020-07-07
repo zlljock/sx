@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background-color: coral;
+        }
+        #animate{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+
+    <!--  -->
+
+
+
+
+
+
+
+
+
+    <!-- html -->
+    <script>
+        document.write(Date())
+    </script>
+
+    <!--修改元素内容  -->
+    <p id="p">按不出</p>
+    <script>
+        document.getElementById("p").innerHTML = "草泥马";
+    </script>
+
+
+    <!-- 更改css -->
+    <p id="p2">hello world</p>
+    <script>
+        document.getElementById("p2").style.color="blue"
+    </script>
+
+    <h1 id="id">点击事件更改css</h1>
+    <button onclick="a()">按钮</button>
+    <script>
+        function a(){
+            document.getElementById("id").style.color = "red"
+        }
+    </script>
+   
+   <!-- 鼠标的再上面和不再上面 -->
+   <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color: brown;height: 50px; width: 100px;">鼠标不在上面</div>
+   <script>
+       function mOver(obj){
+        obj.innerHTML="鼠标再上面"
+       }
+       function mOut(obj){
+        obj.innerHTML="鼠标不在上面"
+       }
+   </script>
+
+<!-- 动画 -->b
+   <p><button onclick="myMove()">点击我</button></p>
+   <div id="container">
+        <div id="animate"></div>
+   </div>
+   <script>
+       function myMove(){
+       var elem = document.getElementById("animate");b
+       var pos= 0;
+       var id=setInterval(frame,5)
+       function frame(){
+           if(pos==350){
+               clearInterval(id)
+           }else{
+               pos ++;
+               elem.style.top = pos +"px";
+               elem.style.left = pos +"px";
+
+           }
+       }
+    }
+   </script>
+</body>
+</html>
