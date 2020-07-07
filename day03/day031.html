@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day03-DIV布局</title>
+
     <style>
         *{margin: 0; padding: 0;}
         .header {
@@ -32,7 +37,7 @@
         }
         .context-right {
             padding: 0 50px;
-            margin-left: 200px;
+            margin-left: 150px;
             background-color: rgb(199, 242, 245);
         }
     
@@ -57,9 +62,9 @@
     <div class="header">
         <h1>强风吹拂~</h1>
     </div>    
-    <div class="context">
+    <div class=" row context">
         <!-- 左侧列表 -->
-        <div class="context-left">
+        <div class="col-md-3 context-left" style="margin-top: 50px;">
             <ul>
                 <li><a href="#natie">阿走</a></li>
                 <li><a href="#meisikafei">灰二</a></li>
@@ -68,9 +73,9 @@
             </ul>
         </div>
         <!-- 右侧内容 -->
-        <div class="context-right">
+        <div class="col-md-9 context-right">
             <div style="text-align: center;">
-                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591784006102&di=6d9c6499f4ebae5275e461ab3205881f&imgtype=0&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2F90bf111ae116fe365a27e4fe31cd64f2.jpeg" style="width: 50%; height: 300px;">
+                <img src="./img/1.jpg" style="width:70%; height: 300px;">
             </div>
 
             <table border="0">
@@ -102,30 +107,32 @@
                 
             </table>
 
+          <div>
             <div class="article">
                 <h2 id="natie">啊走</h2>
-                <img src="https://bkimg.cdn.bcebos.com/pic/c75c10385343fbf2c7ac7203bd7eca8065388f0a?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2UxODA=,xp_5,yp_5" alt="" width="50%">
+                <img src="./img/7.jpg" alt="" width="50%">
                 <p>宽政大学社会学院1年级生。不善言辞，容易封闭自己的内心。就在没找到住处而到处彷徨着的时候，遇到了灰二，成为了竹青庄的第10位住民。经常由于灰二爽朗的发言而导致内心被扰乱。擅长跑步。</p>
             </div>
             
             <div class="article">
                 <h2 id="meisikafei">灰二</h2>
-                <img src="https://bkimg.cdn.bcebos.com/pic/b64543a98226cffc17726092b4014a90f603eab2?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2UxODA=,xp_5,yp_5" alt="" width="50%">
+                <img src="./img/3.jpg" alt="" width="50%">
                 <p>这是爸爸，宽政大学文学院4年级生。
                     时常保持着稳重的微笑和坚强的意志，有着带有不可思议魅力的言行，将竹青庄的住民们卷入了庞大的计划中。伙食方面的负责，每天早晚必定会提供住民们饮食。基本上一直都穿着运动衫。</p>
             </div>
 
             <div class="article">
                 <h2 id="kabuqinuo">城次</h2>
-                <img src="https://bkimg.cdn.bcebos.com/pic/71cf3bc79f3df8dc1a3f50b1c011728b47102894?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2UxODA=,xp_5,yp_5" alt="" width="50%">
+                <img src="./img/4.jpg" alt="" width="50%">
                 <p>宽政大学经济学院1年级生。城太的双胞胎弟弟。与高中时在足球上投入了大量时间不同的是，在大学只想要和女生多接触，经常幻想自己的新生活。也有着天真浪漫的性格，自己觉得哥哥没了自己的话无法生存。</p>                
             </div>
 
             <div class="article">
                 <h2 id="sudashui">阿雪</h2>
-                <img src="https://bkimg.cdn.bcebos.com/pic/58ee3d6d55fbb2fb7aa99d33424a20a44623dc15?x-bce-process=image/watermark,g_7,image_d2F0ZXIvYmFpa2UxODA=,xp_5,yp_5" alt="" width="50%">
+                <img src="./img/5.jpg" alt="" width="50%">
                 <p>宽政大学法学院4年级生。3年级时候的法律考试一次通过了的秀才。然而，因为通过了考试而变得无拘无束，现在已经变成了整天泡在俱乐部的花花公子。对尼古吸烟造成的危害会变得异常激动。</p>
             </div>
+          </div>
         </div>
     </div>
     <div class="footer">
