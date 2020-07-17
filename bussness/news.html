@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XT994HVQQV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-XT994HVQQV');
+    </script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css"
+    />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>凹凸世界-新闻</title>
+</head>
+<body>
+    <header>
+        <div class="logo dark">JOJO</div>
+        <nav>
+            <a class="dark" href="./index.html">首页</a>
+            <a class="dark" href="./news.html">新闻</a>
+            <a class="dark" href="./about.html">关于我们</a>
+        </nav>
+        <div class="burger">
+            <div class="burger-line1 darkBur"> </div>
+            <div class="burger-line2 darkBur"></div>
+            <div class="burger-line3 darkBur"></div>
+        </div>
+    </header>
+    <!--中间内容-->
+    <div class="content-wrapper">
+        <section class="recent-news">
+            <h2 class="title">已完结</h2>
+            <p class="intro"></p>
+            <div id="news" class="news">
+            </div>
+        </section>
+        <div>
+            <button class="page-button" onclick="cearchNews(1)">1</button>
+            <button class="page-button" onclick="cearchNews(2)">2</button>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-menus">
+          <div class="contact-us">
+            <p class="menu-title">联系我们</p>
+            <p>地址：福建省闽侯县闽江学院</p>
+            <p>电话：13111111111</p>
+            <p>电子邮箱：1428567457@qq.com</p>
+          </div>
+          <p class="icp-info">闽XXXXXXXX号</p>
+          <p class="rights">
+            &copy; 2020JOJO@LWX 版权所有
+          </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/news.js"></script>
+    
+</body>
+</html>
